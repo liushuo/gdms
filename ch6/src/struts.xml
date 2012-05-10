@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="ch6" namespace="/" extends="struts-default">
+		<interceptors>
+			<interceptor name="loggerInterceptor" class="org.tute.sure.utils.LoggerInterceptor"></interceptor>
+			<interceptor-stack name="myStack">
+				<interceptor-ref name="loggerInterceptor"></interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="myStack"></default-interceptor-ref>
+
+		<global-results>
+			<result name="JDBCException">/jdbcerror.jsp</result>
+		</global-results>
+		<global-exception-mappings>
+			<exception-mapping exception="org.tute.sure.dao.DAOException"
+				result="JDBCException"></exception-mapping>
+		</global-exception-mappings>
+
+		<action name="user" class="org.tute.sure.web.UserAction">
+			<result name="success">/user.jsp</result>
+			<result name="input">/user-input.jsp</result>
+			<result name="reload" type="redirectAction">
+				<param name="namespace">/</param>
+				<param name="actionName">department-input</param>
+				<param name="id">${departmentId}</param>
+			</result>
+			<result name="showPhoto" type="stream">
+				<param name="inputName">inputStream</param>
+				<param name="contentTyep">image/jpeg</param>
+			</result>
+		</action>
+
+		<action name="department-*" class="org.tute.sure.web.DepartmentAction"
+			method="{1}">
+			<result name="success">/department.jsp</result>
+			<result name="input">/department-input.jsp</result>
+			<result name="reload" type="redirectAction">
+				<param name="namespace">/</param>
+				<param name="actionName">department-</param>
+			</result>
+		</action>
+	</package>
+
+	<bean name="userManager" class="org.tute.sure.logic.UserManager"></bean>
+	<bean name="departmentManager" class="org.tute.sure.logic.DepartmentManager"></bean>
+
+</struts>    

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Struts2Diagram version="2.0">
+  <package name="ch6" location="14,39" size="451,412">
+    <action name="user" location="295,52" size="150,41">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="user.jsp" />
+      </result>
+    </action>
+    <action name="user-input" location="293,134" size="150,41">
+      <result name="input">
+        <resourceEdge source="input" routing="0" target="user-input.jsp" />
+      </result>
+    </action>
+    <action name="user-delete" location="48,54" size="150,41">
+      <result name="reload">
+        <resourceEdge source="reload" routing="0" target="user" namespace="/" />
+      </result>
+    </action>
+    <action name="user-save" location="43,108" size="150,41">
+      <result name="reload">
+        <resourceEdge source="reload" routing="0" target="department-input" namespace="/" />
+      </result>
+    </action>
+    <action name="department" location="290,274" size="150,62">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="department.jsp" />
+      </result>
+      <result name="JDBCException">
+        <resourceEdge source="JDBCException" routing="0" target="jdbcerror.jsp" />
+      </result>
+    </action>
+    <action name="department-input" location="17,167" size="150,41">
+      <result name="input">
+        <resourceEdge source="input" routing="0" target="department-input.jsp" />
+      </result>
+    </action>
+    <action name="department-delete" location="16,266" size="150,41">
+      <result name="reload">
+        <resourceEdge source="reload" routing="0" target="department" namespace="/" />
+      </result>
+    </action>
+    <action name="department-save" location="15,365" size="150,41">
+      <result name="reload">
+        <resourceEdge source="reload" routing="0" target="department" namespace="/" />
+      </result>
+    </action>
+  </package>
+  <webResource name="user.jsp" path="/user.jsp" location="522,39" size="150,55" />
+  <webResource name="jdbcerror.jsp" path="/jdbcerror.jsp" location="525,123" size="150,55" />
+  <webResource name="user-input.jsp" path="/user-input.jsp" location="526,211" size="150,55" />
+  <webResource name="department.jsp" path="/department.jsp" location="527,303" size="150,55" />
+  <webResource name="department-input.jsp" path="/department-input.jsp" location="531,382" size="150,55" />
+</Struts2Diagram>
+
